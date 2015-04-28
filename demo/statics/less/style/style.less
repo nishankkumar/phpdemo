@@ -1,0 +1,71 @@
+// out: ../../css/style/style.css, compress: true
+//Config for ATOM Less Compile, this is temporary
+@bootstrap-base-url: "../bootstrap";   // Bootstrap base URL
+@partial-base-url: "../partials";    // Partials base URL
+@vendors-base-url: "../vendors";    // Partials base URL
+@images-base-url: "../../images";
+
+// Core variables and mixin;
+@import "variables.less";
+@import "@{bootstrap-base-url}/mixins.less";
+
+// Reset and dependencies
+@import "@{bootstrap-base-url}/normalize.less";
+//@import "print.less";
+//
+//// Core CSS
+@import "@{bootstrap-base-url}/scaffolding.less";
+@import "@{bootstrap-base-url}/type.less";
+// @import "@{bootstrap-base-url}/code.less";
+@import "@{bootstrap-base-url}/grid.less";
+//@import "tables.less";
+@import "@{bootstrap-base-url}/forms.less";
+@import "@{bootstrap-base-url}/buttons.less";
+//
+//// Components
+@import "@{bootstrap-base-url}/component-animations.less";
+@import "@{bootstrap-base-url}/dropdowns.less";
+@import "@{bootstrap-base-url}/button-groups.less";
+@import "@{bootstrap-base-url}/modals.less";
+@import "@{bootstrap-base-url}/glyphicons.less";
+
+@import "@{bootstrap-base-url}/input-groups.less";
+//@import "navs.less";
+//@import "navbar.less";
+//@import "breadcrumbs.less";
+//@import "pagination.less";
+//@import "pager.less";
+//@import "labels.less";
+//@import "badges.less";
+//@import "jumbotron.less";
+//@import "thumbnails.less";
+//@import "alerts.less";
+//@import "progress-bars.less";
+//@import "media.less"
+//@import "list-group.less";
+//@import "panels.less";
+//@import "responsive-embed.less";
+//@import "wells.less";
+//@import "close.less";
+////
+//// Components w/ JavaScript
+//@import "tooltip.less";
+//@import "popovers.less";
+//@import "carousel.less";
+
+//// Utility classes
+@import "@{bootstrap-base-url}/utilities.less";
+@import "@{bootstrap-base-url}/responsive-utilities.less";
+@import "@{bootstrap-base-url}/for.less";
+
+// Hometool third Party Vendor Style Files
+
+// Hometool Partial Style Files
+@import "@{partial-base-url}/mixins.less";
+@import "@{partial-base-url}/base.less";
+@import "basestyle.less";
+@import "@{partial-base-url}/header.less";
+@import "@{partial-base-url}/footer.less";
+@import "@{partial-base-url}/animation.less";
+@import "@{partial-base-url}/page.less";
+
