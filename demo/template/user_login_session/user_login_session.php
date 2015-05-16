@@ -2,8 +2,8 @@
 session_start();
 $message="";
 if(count($_POST)>0) {
-	$conn = mysql_connect("localhost","root","");
-	mysql_select_db("comp",$conn);
+	$conn = mysql_connect("localhost","root","") or die('unable to connect');
+	mysql_select_db("comp",$conn) or die('unable to connect db');
 	$result = mysql_query("SELECT * FROM users WHERE user_name='" . $_POST["user_name"] . "' and password = '". $_POST["password"]."'");
 	$row  = mysql_fetch_array($result);
 	if(is_array($row)) {

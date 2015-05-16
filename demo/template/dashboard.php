@@ -1,26 +1,5 @@
 <?php
 session_start();
-$message="";
-if(count($_POST)>0) {
-    $conn = mysql_connect("localhost","root","") or die('unable to connect');
-    mysql_select_db("comm",$conn) or die('unable to connect db');
-    $result = mysql_query("SELECT * FROM user WHERE email='" . $_POST["user_email"] . "' and pass = '". $_POST["password"]."'");
-    $row  = mysql_fetch_array($result);
-    if(is_array($row)) {
-        $_SESSION["user_id"] = $row[id];
-        $_SESSION["email"] = $row[email];
-        $_SESSION["name"] = $row[name];
-        if($_POST["remember_ckeck"]){
-            setcookie("email", $_SESSION["email"], time()+120, "/","", 0);
-            setcookie("pass", $_SESSION["name"], time()+120, "/","", 0);
-        }
-    } else {
-        $message = "Invalid Username or Password!";
-    }
-}
-if(isset($_SESSION["email"])) {
-    header("Location:dashboard.php");
-}
 ?>
 <!DOCTYPE html>
 <!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
@@ -33,7 +12,7 @@ if(isset($_SESSION["email"])) {
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge" /><![endif]-->
     <meta name="viewport" content="device-width">
 
-    <link rel="shortcut icon" type="image/x-icon" href="statics/img/favicon.ico' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="../statics/img/favicon.ico">
     <link href="../statics/less/style/style.css" type="text/css" rel="stylesheet" />
     
     <script src="../statics/js/_libs/jquery-1.11.1.min.js" type="text/javascript" ></script>
@@ -45,9 +24,13 @@ if(isset($_SESSION["email"])) {
         }
     </script>
     <script type="text/javascript">
-        function sign_up() {
-            // console.log(email);
-            $('.js_form').load('user_signup.php');
+        function aj_call(email) {
+            console.log(email);
+            $('.js_aj_data').load('user_in.php', {"user_email":email});
+        }
+        function signup_form_edit(email) {
+            console.log(email);
+            $('.js_aj_data').load('user_signup_edit.php', {"user_email":email});
         }
         function submit_form() {
             var name = $("#name").val();
@@ -72,8 +55,8 @@ if(isset($_SESSION["email"])) {
                     data: dataString,
                     cache: false,
                     success: function(result){
-                        alert(result);
-                        // header("Location:base.php");
+                        // alert(result);
+                        aj_call(result);
                     }
                 });
             }else {
@@ -89,32 +72,56 @@ if(isset($_SESSION["email"])) {
     <header>
         <div class="container-main custom_header">
             <img src="../statics/img/logo_small.png">
+            <?php
+            if($_SESSION["email"]) {
+                ?>
+                <span class="pull-right">Welcome <?php echo " ".$_SESSION["name"]." "; ?><a href="logout.php" tite="Logout"> Logout</a></span>
+                <?php
+            }
+            ?>
         </div>
     </header>
-    <div class="js_form">
-        <form class="container-main login_form" action="" method="post">
-            <div class="field_wrap">
-                <span>Email</span>
-                <input class="custom_input" name="user_email" type="text" placeholder="Email">
-            </div>
-            <div class="field_wrap">
-                <span>Password</span>
-                <input class="custom_input" name="password" type="password" placeholder="Password">
-            </div>
-            <div class="field_wrap">
-                <span></span>
-                <input class="button_main" type="submit" Value="Go">
-                <label>
-                    <input type="checkbox" name="remember_ckeck">
-                    <p>Remember Password</p>
-                </label>
-            </div>
-            <div class="user_invalid"><?php if($message!="") { echo $message; } ?></div>
-            <div>
-                <a class="sign_up_btn" onClick="sign_up()">New User SignUp</a>
-            </div>
-        </form>
+    <div>
+        
     </div>
+    <div class="container-main js_aj_data">
+        <?php
+            $conn = mysql_connect("localhost","root","") or die('unable to connect');
+            mysql_select_db("comm",$conn) or die('unable to connect db');
+            $result = mysql_query("SELECT * FROM `user` AS e LEFT OUTER JOIN `img` AS u ON e.email = u.email");
+            // if ($result > 0){
+                if( !$result ) {
+                    echo "string";
+                }
+                while( $row  = mysql_fetch_array($result) ) {
+                    $path = $row["path"] ? $row["path"] : 'unknown.png';
+                    $stat = $row["status"] == "admin" ? $row["status"] : '';
+                    // echo '<a href="user_info.php?user_email='.$row["email"].'" class="user_info_wrap">';
+                    echo '<div class="user_info_wrap" onClick="aj_call('."'".$row["email"]."'".')">';
+        ?>
+                        <span class="user_img">
+                            <?php echo '<img src="../statics/img/user/' . $path . '" />'; ?>
+                        </span>
+                        <div class="user_data">
+                            <p class="user_name"><?php echo $row["name"]; ?></p>
+                            <p><?php echo $row["mobile"]; ?></p>
+                            <p><?php echo $row["email"]; ?></p>
+                            <p><?php echo $row["address"]; ?></p>
+                        </div>
+                        <?php echo '<span class="admin_style">'. $stat . '</span>'?>
+                    </div>
+
+        <?php
+                // }
+                // else {
+        ?>
+                <!-- <p class="no_user_selected">No users in your contact.</p> -->
+        <?php            
+                // }
+            }
+            mysql_close($conn);
+        ?>
+    </div> 
     <div class="footer">
         
 
