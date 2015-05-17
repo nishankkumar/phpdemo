@@ -26,7 +26,7 @@
 	<div class="copyright_content">
 		<div class="copyright_text" style="font-size:12px;">© 2015 - 2016 <a href="#" class="blue_link">SideView.com</a> - All rights reserved</div>
 		<div class="socials">
-<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FUptobox&amp;send=false&amp;layout=button_count&amp;width=0&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=tahoma&amp;height=21&amp;appId=94277056922" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:117px; height:21px;" allowtransparency="true"></iframe>
+<!-- <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FUptobox&amp;send=false&amp;layout=button_count&amp;width=0&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=tahoma&amp;height=21&amp;appId=94277056922" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:117px; height:21px;" allowtransparency="true"></iframe> -->
 		</div>
 		<div class="copyright_text" style="font-size:11px; margin-top:2px; float:right;"><!--<span style="font-size:11px;">Design by <a href="http://www.ookamistudio.com/" class="blue_link" style="font-size:11px;" target="blank">OokamiStudio.com</a></span>--></div>
 	</div>

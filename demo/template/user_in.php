@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $conn = mysql_connect("localhost","root","") or die('unable to connect');
     mysql_select_db("comm",$conn) or die('unable to connect db');
     $email = $_POST["user_email"];
@@ -69,8 +70,11 @@
                         <span class="profile_data"><?php echo $row["status"]; ?></span>
                 	</div>
                 </form>
-                <?php echo '<span class="admin_style">'. $stat . '</span>';
-                    echo '<a class="edit_button" onClick="signup_form_edit('."'".$row["email"]."'".')">Edit</a>';
+                <?php 
+                    echo '<span class="admin_style">'. $stat . '</span>';
+                    if ($_SESSION["status"] == 'admin' || $row["email"] == $_SESSION["email"]) {
+                        echo '<a class="edit_button" onClick="signup_form_edit('."'".$row["email"]."'".')">Edit</a>';
+                    }
                 ?>
             </div>
 <?php            

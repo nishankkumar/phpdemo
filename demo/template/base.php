@@ -24,6 +24,9 @@
                     <input type="checkbox" name="remember_ckeck">
                     <p>Remember Password</p>
                 </label>
+                <label>
+                    <a class="sign_up_btn" onClick="reset_pass()">Forget password ?</a>
+                </label>
             </div>
             <div class="user_invalid"><?php if($message!="") { echo $message; } ?></div>
             <div>

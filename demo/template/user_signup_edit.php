@@ -72,7 +72,7 @@
                     <div class="form_control">
                         <span></span>
                         <span class="colan_wrap"></span>
-                        <input type="button" value="OK" onClick="submit_form()"/>
+                        <input type="button" class="btn btn-success" value="OK" onClick="submit_form()"/>
                     </div>
                 </form>
                 <?php echo '<span class="admin_style">'. $stat . '</span>'?>

@@ -10,6 +10,7 @@ if(count($_POST)>0) {
         $_SESSION["user_id"] = $row[id];
         $_SESSION["email"] = $row[email];
         $_SESSION["name"] = $row[name];
+        $_SESSION["status"] = $row[status];
         if($_POST["remember_ckeck"]){
             setcookie("email", $_SESSION["email"], time()+120, "/","", 0);
             setcookie("pass", $_SESSION["name"], time()+120, "/","", 0);

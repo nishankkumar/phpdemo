@@ -15,13 +15,7 @@
 	$status=$_POST["status1"];
 	// echo $name+$mobile+$email+$address+$designation+$intro+$dob+$company+$id+$other+$status;
 	//Insert query
-	$sql_check = "SELECT * FROM user WHERE email='".$email."'";
-	$query_ckeck = mysql_query($sql_check, $conn);
-	if($query_ckeck) {
-		$sql = "UPDATE user SET name = '".$name."', mobile = '".$mobile."', email = '".$email."', address = '".$address."', designation = '".$designation."', intro = '".$intro."', dob = '".$dob."', company = '".$company."', id = '".$id."', other = '".$other."', status = '".$status."' WHERE email = '".$email."'";
-	}else {
-		$sql = "INSERT INTO user SET name = '".$name."', mobile = '".$mobile."', email = '".$email."', address = '".$address."', designation = '".$designation."', intro = '".$intro."', dob = '".$dob."', company = '".$company."', id = '".$id."', other = '".$other."', status = '".$status."'";
-	}
+	$sql = "UPDATE user SET name = '".$name."', mobile = '".$mobile."', email = '".$email."', address = '".$address."', designation = '".$designation."', intro = '".$intro."', dob = '".$dob."', company = '".$company."', id = '".$id."', other = '".$other."', status = '".$status."' WHERE email = '".$email."'";
 	$query = mysql_query($sql, $conn);
 	if($query) {
 		echo $email;
