@@ -2,7 +2,7 @@
     session_start();
     
     if(!isset($_SESSION["email"])) {
-        header("Location:base.php");
+        header("Location:base");
     }
 ?>
 <?php include '_include/header.php' ?>

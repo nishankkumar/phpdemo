@@ -26,7 +26,7 @@ function submit_form() {
             cache: false,
             success: function(result){
                 alert(result);
-                // header("Location:base.php");
+                // header("Location:base");
             }
         });
     }else {

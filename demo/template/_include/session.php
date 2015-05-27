@@ -20,7 +20,7 @@ if(count($_POST)>0) {
     }
 }
 if(isset($_SESSION["email"])) {
-    header("Location:dashboard_in.php");
+    header("Location:dashboard_in");
 }
 ?>
 <script type="text/javascript">
@@ -29,7 +29,7 @@ if(isset($_SESSION["email"])) {
         console.log(dataString);
         $.ajax({
             type: "POST",
-            url: "base.php",
+            url: "base",
             data: dataString,
             cache: false,
             success: function(result){
