@@ -83,7 +83,8 @@ function reset_pass_form() {
             success: function(result){
                 // alert(result);
                 // aj_call(result);
-            $('.js_form').load('login_form.php');
+            // $('.js_form').load('login_form.php');
+            login_form_load();
             }
         });
     }else {
@@ -91,4 +92,7 @@ function reset_pass_form() {
         $("#pass").css('border-color','red');
         $("#re_pass").css('border-color','red');
     }
+}
+function login_form_load(){
+    $('.js_form').load('login_form.php');
 }

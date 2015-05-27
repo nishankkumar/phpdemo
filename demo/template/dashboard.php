@@ -1,7 +1,13 @@
 <?php 
-    session_start();
+session_start();
+
+if(!isset($_SESSION["email"])) {
+    header("Location:base.php");
+}
+
 ?>
 <?php include '_include/header.php' ?>
+
 
 <div class="global">
     <header>
@@ -23,7 +29,7 @@
         <?php
             $conn = mysql_connect("localhost","root","") or die('unable to connect');
             mysql_select_db("comm",$conn) or die('unable to connect db');
-            $result = mysql_query("SELECT * FROM `user` AS e LEFT OUTER JOIN `img` AS u ON e.email = u.email");
+            $result = mysql_query("SELECT * FROM `img` AS u RIGHT OUTER JOIN `user` AS e ON e.email = u.email");
             // if ($result > 0){
                 if( !$result ) {
                     echo "string";
@@ -32,7 +38,11 @@
                     $path = $row["path"] ? $row["path"] : 'unknown.png';
                     $stat = $row["status"] == "admin" ? $row["status"] : '';
                     // echo '<a href="user_info.php?user_email='.$row["email"].'" class="user_info_wrap">';
-                    echo '<div class="user_info_wrap" onClick="aj_call('."'".$row["email"]."'".')">';
+                    if($row["email"] == $_SESSION["email"]) {
+                        echo '<div class="user_info_wrap" style="border-color:#e86024;" onClick="aj_call('."'".$row["email"]."'".')">';
+                    }else {
+                        echo '<div class="user_info_wrap" onClick="aj_call('."'".$row["email"]."'".')">';
+                    }
         ?>
                         <span class="user_img">
                             <?php echo '<img src="../statics/img/user/' . $path . '" />'; ?>

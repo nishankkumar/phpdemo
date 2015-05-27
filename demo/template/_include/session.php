@@ -20,6 +20,24 @@ if(count($_POST)>0) {
     }
 }
 if(isset($_SESSION["email"])) {
-    header("Location:dashboard.php");
+    header("Location:dashboard_in.php");
 }
 ?>
+<script type="text/javascript">
+    if(<?php echo $_SESSION["email"]; ?>) {
+        var dataString = 'user_email='+<?php echo $_SESSION["email"]; ?>+'&password='+<?php echo $_SESSION["pass"]; ?>;
+        console.log(dataString);
+        $.ajax({
+            type: "POST",
+            url: "base.php",
+            data: dataString,
+            cache: false,
+            success: function(result){
+                // alert(result);
+                // aj_call(result);
+                console.log('success');
+            }
+        });
+
+    }
+</script>

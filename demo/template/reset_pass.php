@@ -20,4 +20,6 @@
         <input class="button_main" type="submit" Value="Go" onClick="reset_pass_form()">
     </div>
     <!-- <div class="user_invalid"><?php if($message!="") { echo $message; } ?></div> -->
+    <img src="../statics/img/back_btn.png" class="back_btn" onClick="login_form_load()">
+    
 </div>

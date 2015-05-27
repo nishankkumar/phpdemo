@@ -8,7 +8,7 @@
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge" /><![endif]-->
     <meta name="viewport" content="device-width">
 
-    <link rel="shortcut icon" type="image/x-icon" href="statics/img/favicon.ico' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="../statics/img/favicon.ico">
     <link href="../statics/less/style/style.css" type="text/css" rel="stylesheet" />
     
     <script src="../statics/js/_libs/jquery-1.11.1.min.js" type="text/javascript" ></script>

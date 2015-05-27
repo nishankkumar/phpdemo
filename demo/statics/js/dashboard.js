@@ -1,9 +1,9 @@
 function aj_call(email) {
-    console.log(email);
+    // console.log(email);
     $('.js_aj_data').load('user_in.php', {"user_email":email});
 }
 function signup_form_edit(email) {
-    console.log(email);
+    // console.log(email);
     $('.js_aj_data').load('user_signup_edit.php', {"user_email":email});
 }
 function submit_form() {
@@ -21,7 +21,7 @@ function submit_form() {
     // Returns successful data submission message when the entered information is stored in database.
     var dataString = 'name1='+name+'&mobile1='+mobile+'&email1='+email+'&address1='+address+'&designation1='+designation+'&intro1='+intro+'&dob1='+dob+'&company1='+company+'&id1='+id+'&other1='+other+'&status1='+status;
     // AJAX Code To Submit Form.
-    console.log(dataString);
+    // console.log(dataString);
     if(email) {
         $.ajax({
             type: "POST",

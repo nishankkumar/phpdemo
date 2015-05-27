@@ -2,7 +2,7 @@
     $conn = mysql_connect("localhost","root","") or die('unable to connect');
     mysql_select_db("comm",$conn) or die('unable to connect db');
     $email = $_POST["user_email"];
-    $result = mysql_query("SELECT * FROM user INNER JOIN img ON user.email=img.email WHERE user.email='" . $email . "'");
+    $result = mysql_query("SELECT * FROM img RIGHT OUTER JOIN user ON user.email=img.email WHERE user.email='" . $email . "'");
         
         while( $row  = mysql_fetch_array($result) ) {
             $path = $row["path"] ? $row["path"] : 'unknown.png';
