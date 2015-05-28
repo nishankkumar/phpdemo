@@ -13,9 +13,14 @@
 	$router->map( 'GET|POST', '/profile', function() {
 		require __DIR__ . '/dashboard_in.php';
 	});
+	$router->map( 'GET|POST', '/404', function() {
+		require __DIR__ . '/_include/404.php';
+	});
 	$match = $router->match();
 	
 	if($match) {
 		call_user_func_array( $match['target'], $match['params'] ); 
+	}else {
+		header("Location:404");
 	}
 ?>

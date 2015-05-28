@@ -1,6 +1,8 @@
 function aj_call(email) {
     // console.log(email);
+    $('.js_loader').show();
     $('.js_aj_data').load('user_in.php', {"user_email":email});
+    $('.js_loader').hide();
 }
 function signup_form_edit(email) {
     // console.log(email);
@@ -36,4 +38,32 @@ function submit_form() {
     }else {
         $("#email").css('border-color','red');
     }
+}
+
+function remove_user(email, session_email) {
+    var dataString = 'email1='+email;
+    if(email) {
+        $('.js_loader').show();
+        $.ajax({
+            type: "POST",
+            url: "remove_user.php",
+            data: dataString,
+            cache: false,
+            success: function(result){
+                // alert(result);
+                // aj_call(result);
+                $('.js_all_user').load('all_user_list.php');
+                console.log(session_email);
+                $('.js_aj_data').load('user_in.php', {"user_email":session_email});
+            },
+            complete: function() {
+                $('.js_loader').hide();
+            }
+        });
+    }else {
+        // $("#email").css('border-color','red');
+    } 
+}
+function all_user_render() {
+    $('.js_all_user').load('all_user_list.php');   
 }

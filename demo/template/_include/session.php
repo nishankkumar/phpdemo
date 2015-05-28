@@ -8,37 +8,27 @@
         $row  = mysql_fetch_array($result);
         if(is_array($row)) {
             $_SESSION["user_id"] = $row[id];
-            $_SESSION["email"] = $row[email];
             $_SESSION["name"] = $row[name];
+            $_SESSION["email"] = $row[email];
+            $_SESSION["pass"] = $row[pass];
             $_SESSION["status"] = $row[status];
             if($_POST["remember_ckeck"]){
+                echo 'hello remark checked';
                 setcookie("email", $_SESSION["email"], time()+120, "/","", 0);
-                setcookie("pass", $_SESSION["name"], time()+120, "/","", 0);
+                setcookie("pass", $_SESSION["pass"], time()+120, "/","", 0);
             }
         } else {
             $message = "Invalid Username or Password!";
         }
     }
+    if(isset($_COOKIE["email"]) && isset($_COOKIE["pass"])) {
+        echo 'inside using cookies';
+        $_SESSION["email"] = $_COOKIE["email"];
+        $_SESSION["pass"] = $_COOKIE["pass"];
+        $_SESSION["status"] = $_COOKIE["status"];
+        $_SESSION["name"] = $_COOKIE["name"];
+    }
     if(isset($_SESSION["email"])) {
         header("Location:profile");
     }
 ?>
-
-<script type="text/javascript">
-    if(<?php echo $_SESSION["email"]; ?>) {
-        var dataString = 'user_email='+<?php echo $_SESSION["email"]; ?>+'&password='+<?php echo $_SESSION["pass"]; ?>;
-        console.log(dataString);
-        $.ajax({
-            type: "POST",
-            url: "base.php",
-            data: dataString,
-            cache: false,
-            success: function(result){
-                // alert(result);
-                // aj_call(result);
-                console.log('success');
-            }
-        });
-
-    }
-</script>

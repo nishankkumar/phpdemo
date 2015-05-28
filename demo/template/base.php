@@ -32,7 +32,6 @@
             <div>
                 <a class="sign_up_btn" onClick="sign_up()">New User SignUp</a>
             </div>
-            <!-- <img src="../statics/img/back_btn.png" class="back_btn" onClick="login_form_load()"> -->
         </form>
     </div>
     <div class="footer">
