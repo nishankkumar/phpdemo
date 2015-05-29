@@ -37,8 +37,11 @@
 </div>
 
 <script src="../statics/js/dashboard.js" type="text/javascript" ></script>
+<script src="../statics/js/common.js" type="text/javascript" ></script>
 <script type="text/javascript">
     aj_call(<?php echo "'".$_SESSION["email"]."'"; ?>);
     all_user_render();
+    session_status = <?php echo "'".$_SESSION["status"]."'"; ?>;
+    session_email = <?php echo "'".$_SESSION["email"]."'"; ?>;
 </script>
 <?php include '_include/footer.php' ?>
