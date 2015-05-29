@@ -1,7 +1,9 @@
 <div class="container-main login_form">
     <div class="field_wrap">
         <span>Email</span>
-        <input class="custom_input" value="" id="email" name="user_email" type="text" placeholder="Email">
+        <input class="custom_input" value="" id="email" name="user_email" type="text" placeholder="Email" onInput="checkEmailNotInDb( $(this).val())">
+        <a class="email_verified js_email_verified  glyphicon glyphicon-ok"></a>
+        <a class="email_verified not js_email_unverified glyphicon glyphicon-remove"></a>
     </div>
     <div class="field_wrap">
         <span>Password</span>

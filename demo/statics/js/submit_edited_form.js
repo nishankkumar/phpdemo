@@ -1,3 +1,78 @@
+$(document).ready(function(){
+    $('#user_email').on('change',function(){
+        checkEmailInDb( $(this).val() );     
+    });
+    $('#email').on('change',function(){
+        checkEmailInDb( $(this).val() );     
+    });
+});
+function checkEmailInDb( email ) {
+    var dataString = 'email1='+email;
+    console.log(dataString);
+    $.ajax({
+        type: "POST",
+        url: "check_email_in_db.php",
+        data: dataString,
+        cache: false,
+        success: function(result){
+            // alert(result);
+            // aj_call(result);
+            // console.log(result);
+            if(result) {
+                $('.js_email_verified').show();
+                $('.js_email_unverified').hide()
+
+            console.log(result+'1');
+            }else {
+                $('.js_email_verified').hide();
+                $('.js_email_unverified').show();
+            console.log(result+'2');
+            }
+        }
+    });
+}
+function checkEmailNotInDb( email ) {
+    var dataString = 'email1='+email;
+    console.log(dataString);
+    var email_check = validateEmail(email);
+    $.ajax({
+        type: "POST",
+        url: "check_email_in_db.php",
+        data: dataString,
+        cache: false,
+        success: function(result){
+            // alert(result);
+            // aj_call(result);
+            // console.log(result);
+            if(!result && email_check) {
+                $('.js_email_verified').show();
+                $('.js_email_unverified').hide()
+
+            console.log(result+'1');
+            }else {
+                $('.js_email_verified').hide();
+                $('.js_email_unverified').show();
+            console.log(result+'2');
+            }
+        }
+    });
+}
+function validateForm() {
+    var email = $('#user_email').val();
+    var pass = $('#password').val();
+    var email_check = validateEmail(email);
+    console.log('inside alidate');
+    if(!email_check) {
+    console.log('email error alidate');
+    $('#user_email').css('border-color','red');
+        return false;
+    }
+    if(!pass) {
+    $('#password').css('border-color','red');
+    console.log('pass error alidate');
+        return false;
+    }
+}
 function sign_up() {
     // console.log(email);
     $('.js_form').load('user_signup.php');
@@ -42,7 +117,8 @@ function submit_signup_form() {
     var log_data = 'user_email='+email+'&password='+pass;
     //  AJAX Code To Submit Form.
     console.log(dataString);
-    if(email && (pass==re_pass) && pass!="") {
+    var email_check = validateEmail(email);
+    if(email_check && (pass==re_pass) && pass!="") {
         $.ajax({
             type: "POST",
             url: "form_signup_submit.php",
@@ -55,9 +131,15 @@ function submit_signup_form() {
             }
         });
     }else {
-        $("#email").css('border-color','red');
-        $("#pass").css('border-color','red');
-        $("#re_pass").css('border-color','red');
+        if(!email_check){
+            $("#email").css('border-color','red');
+        }
+        if(!pass){
+            $("#pass").css('border-color','red');
+        }
+        if(pass != re_pass) {
+            $("#re_pass").css('border-color','red');
+        }
     }
 }
 function reset_pass() {
@@ -73,8 +155,9 @@ function reset_pass_form() {
     var dataString = 'email1='+email+'&pass1='+pass+'&old_pass1='+old_pass;
     var log_data = 'user_email='+email+'&password='+pass;
     //  AJAX Code To Submit Form.
+    var email_check = validateEmail(email);
     console.log(dataString);
-    if(email && (pass==re_pass) && pass!="" && old_pass!="") {
+    if(email_check && (pass==re_pass) && pass!="" && old_pass!="") {
         $.ajax({
             type: "POST",
             url: "form_reset_pass.php",
@@ -88,11 +171,25 @@ function reset_pass_form() {
             }
         });
     }else {
-        $("#email").css('border-color','red');
-        $("#pass").css('border-color','red');
-        $("#re_pass").css('border-color','red');
+        if(!email_check){
+            $("#email").css('border-color','red');
+        }
+        if(!pass){
+            $("#pass").css('border-color','red');
+        }
+        if(pass != re_pass) {
+            $("#re_pass").css('border-color','red');
+        }
+        if(!old_pass) {
+            $("#old_pass").css('border-color','red');
+        }
     }
 }
 function login_form_load(){
     $('.js_form').load('login_form.php');
+}
+
+function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email);
 }

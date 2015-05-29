@@ -155,6 +155,7 @@
 }
 .user_invalid {
     text-align: center;
+    color: red;
 }
 .edit_button {
     position: absolute;
@@ -315,20 +316,28 @@
     }
 }
 .remove_user {
-  position: absolute;
-  right: 0;
-  top: 36%;
+    position: absolute;
+    right: 0;
+    top: 36%;
 }
 .loader {
-  position: absolute;
-  left: 31%;
-  top: 49px;
-  display: none;
+    position: absolute;
+    left: 31%;
+    top: 49px;
+    display: none;
 }
 .main_profile_wrap {
-  min-height: 430px;
+    min-height: 430px;
 }
 .logined_user {
-  border-radius: 0;
-  border: 1px solid skyblue;
+    border-radius: 0;
+    border: 1px solid skyblue;
+}
+.email_verified {
+    display: inline-block;
+    color: green;
+    display: none;
+    &.not {
+    color: red;
+    }
 }

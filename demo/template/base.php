@@ -8,14 +8,16 @@
         </div>
     </header>
     <div class="js_form">
-        <form class="container-main login_form" action="" method="post">
+        <form class="container-main login_form" action="" method="post" onsubmit="return validateForm()">
             <div class="field_wrap">
                 <span>Email</span>
-                <input class="custom_input" name="user_email" type="text" placeholder="Email">
+                <input class="custom_input" id="user_email" name="user_email" type="text" placeholder="Email">
+                <a class="email_verified js_email_verified  glyphicon glyphicon-ok"></a>
+                <a class="email_verified not js_email_unverified glyphicon glyphicon-remove"></a>
             </div>
             <div class="field_wrap">
                 <span>Password</span>
-                <input class="custom_input" name="password" type="password" placeholder="Password">
+                <input class="custom_input" id="password" name="password" type="password" placeholder="Password">
             </div>
             <div class="field_wrap">
                 <span></span>
