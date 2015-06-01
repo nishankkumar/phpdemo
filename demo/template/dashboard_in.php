@@ -36,8 +36,16 @@
     </span>
 </div>
 
-<script src="../statics/js/dashboard.js" type="text/javascript" ></script>
-<script src="../statics/js/common.js" type="text/javascript" ></script>
+<!-- <script src="../statics/js/dashboard.js" type="text/javascript" ></script> -->
+<!-- <script src="../statics/js/common.js" type="text/javascript" ></script> -->
+<?php
+    require 'jsmin-1.1.1.php';
+    $js=file_get_contents('../statics/js/dashboard.js');
+    $js.=file_get_contents('../statics/js/common.js');
+    $js=JSMin::minify($js);
+    echo '<script>'.$js.'</script>';
+    // file_put_contents($writabledir.$name,$js);
+?>
 <script type="text/javascript">
     aj_call(<?php echo "'".$_SESSION["email"]."'"; ?>);
     all_user_render();

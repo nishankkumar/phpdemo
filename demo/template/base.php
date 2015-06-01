@@ -42,6 +42,12 @@
     </div>
 </div>
 
-<script src="../statics/js/submit_edited_form.js" type="text/javascript" ></script>
-
+<!-- <script src="../statics/js/submit_edited_form.js" type="text/javascript" ></script> -->
+<?php
+    require 'jsmin-1.1.1.php';
+    $js=file_get_contents('../statics/js/submit_edited_form.js');
+    $js=JSMin::minify($js);
+    echo '<script>'.$js.'</script>';
+    // file_put_contents($writabledir.$name,$js);
+?>
 <?php include '_include/footer.php' ?>
