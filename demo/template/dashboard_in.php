@@ -43,9 +43,11 @@
     $js=file_get_contents('../statics/js/dashboard.js');
     $js.=file_get_contents('../statics/js/common.js');
     $js=JSMin::minify($js);
-    echo '<script>'.$js.'</script>';
-    // file_put_contents($writabledir.$name,$js);
+    // echo '<script type="text/javascript">'.$js.'</script>';
+    // file_put_contents(../statics/js/dashboard.min.js,$js);
+    file_put_contents('../statics/js/dash.min.js',$js);
 ?>
+<script src="../statics/js/dash.min.js" type="text/javascript" ></script>
 <script type="text/javascript">
     aj_call(<?php echo "'".$_SESSION["email"]."'"; ?>);
     all_user_render();
